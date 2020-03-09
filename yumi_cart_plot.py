@@ -4,7 +4,7 @@ import numpy as np
 # from gym.envs.mujoco.yumipeg import GOAL
 from yumikin.YumiKinematics import YumiKinematics
 # GOAL = np.array([-1.5368, -1.2531, 1.3270, 0.1873, 2.1941, 1.2839, -0.8438])
-base_log_file = '/home/shahbaz/Research/Software/Stablevic27/log'
+base_log_file = '/home/shahbaz/Dropbox/Workspace/Stablevic'
 exp_name = 'peg_x_2'
 log_file = base_log_file + '/' + exp_name + '/' + 'data'
 exp_data = pickle.load( open(log_file, "rb" ) )
