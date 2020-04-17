@@ -7,7 +7,11 @@ from yumikin.YumiKinematics import YumiKinematics
 base_log_file = '/home/shahbaz/Dropbox/Workspace/Stablevic'
 exp_name = 'peg_x_2'
 log_file = base_log_file + '/' + exp_name + '/' + 'data'
-exp_data = pickle.load( open(log_file, "rb" ) )
+# exp_data = pickle.load( open(log_file, "rb" ) )
+
+with open(log_file, 'rb') as f:
+    exp_data = pickle.load(f, encoding="latin1")
+
 exp_log = exp_data['data']
 exp_params = exp_data['exp_params']
 algo_params = exp_params['algo_params']
