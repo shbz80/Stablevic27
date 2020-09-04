@@ -189,9 +189,11 @@ for ep in range(epoch_num):
     rewards_disc_rtn[ep] = np.mean([epoch[s]['returns'][0] for s in range(sample_num)])
     rewards_undisc_rwd[ep] = np.mean([np.sum(epoch[s]['rewards']) for s in range(sample_num)])
     for s in range(sample_num):
-        sample = np.min(np.absolute(epoch[s]['observations'][:,:6]), axis=0)
+        # sample = np.min(np.absolute(epoch[s]['observations'][:,:6]), axis=0)
+        sample = np.min(np.linalg.norm(epoch[s]['observations'][:, :3], axis=1), axis=0)
         # sample = epoch[s]['observations'][-1, :6]
-        success_mat[ep, s] = np.linalg.norm(sample) < SUCCESS_DIST
+        # success_mat[ep, s] = np.linalg.norm(sample) < SUCCESS_DIST
+        success_mat[ep, s] = sample < SUCCESS_DIST
 
 success_stat = np.sum(success_mat, axis=1)*(100/float(sample_num))
 
