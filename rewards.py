@@ -1,6 +1,17 @@
 import numpy as np
 from garage.misc import tensor_utils
-from agent_hyperparams import reward_params
+# from agent_hyperparams import reward_params # todo
+
+reward_params = {}
+reward_params['LIN_SCALE'] = 1
+reward_params['ROT_SCALE'] = 1
+reward_params['POS_SCALE'] = 1
+reward_params['VEL_SCALE'] = 1e-1
+reward_params['STATE_SCALE'] = 1
+reward_params['ACTION_SCALE'] = 1e-2
+reward_params['v'] = 2
+reward_params['w'] = 1
+reward_params['TERMINAL_STATE_SCALE'] = 20
 
 def cart_rwd_shape_1(d, v=1, w=1):
 
