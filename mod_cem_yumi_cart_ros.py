@@ -28,7 +28,7 @@ GOAL_POS = np.array([-2.0425, -0.7721, 2.0033, -0.0046, 1.9164, 1.0043, -1.2424]
 
 
 kin_params_yumi = {}
-kin_params_yumi['urdf'] = '/home/shahbaz/Research/Software/Stablevic27/yumikin/models/yumi_ABB_left.urdf'
+kin_params_yumi['urdf'] = '/home/shahbaz/Research/Software/yumi_kinematics/yumikin/models/yumi_ABB_left.urdf'
 kin_params_yumi['base_link'] = 'world'
 kin_params_yumi['end_link'] = 'left_tool0'
 # kin_params_yumi['end_link'] = 'left_contact_point'
@@ -60,6 +60,14 @@ D_d = np.sqrt(np.multiply(M_d, np.diag(S0_init)))
 print('D_init:', D_d)
 d_trans = np.max(D_d[:3])
 d_rot = np.max(D_d[3:])
+
+#s,d derivation
+T = 100
+dt = 0.01
+t = T*dt
+b = -2*M_d/t
+k = np.square(b)/(4.*M_d)
+
 
 # start with v=20 and expect convergence with v=5000. Starting mean 0.4 has full coverage from 0.1 to 1. at v=20
 # this is the base p.d. matrix and will be used to scale 4 3X3 matrices for S/D_trans, S/D_rot.

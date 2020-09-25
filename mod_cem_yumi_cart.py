@@ -19,7 +19,7 @@ if not os.path.exists(log_file):
 GOAL_POS = GOAL
 # INIT_POS = np.array([-1.63688, -1.14705, 0.93536, 0.622845, 1.96716, 1.86328, 0.47748])
 kin_params_yumi = {}
-kin_params_yumi['urdf'] = '/home/shahbaz/Research/Software/Stablevic27/yumikin/models/yumi_ABB_left.urdf'
+kin_params_yumi['urdf'] = '/home/shahbaz/Research/Software/yumi_kinematics/yumikin/models/yumi_ABB_left.urdf'
 kin_params_yumi['base_link'] = 'world'
 # kin_params_yumi['end_link'] = 'gripper_l_base'
 kin_params_yumi['end_link'] = 'left_contact_point'

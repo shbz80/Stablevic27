@@ -185,27 +185,26 @@ for ep in range(epoch_num):
     rewards_undisc_mean[ep] = np.mean([np.sum(epoch[s]['rewards']) for s in range(sample_num)])
     rewards_undisc_std[ep] = np.std([np.sum(epoch[s]['rewards']) for s in range(sample_num)])
     for s in range(sample_num):
-        # sample = np.min(np.absolute(epoch[s]['observations'][:,:6]), axis=0)
-        sample = np.min(np.linalg.norm(epoch[s]['observations'][:, :3],axis=1), axis=0)
+        sample = np.min(np.absolute(epoch[s]['observations'][:,:6]), axis=0)
         # sample = epoch[s]['observations'][-1, :6]
-        # success_mat[ep, s] = np.linalg.norm(sample) < SUCCESS_DIST
-        success_mat[ep, s] = sample < SUCCESS_DIST
+        success_mat[ep, s] = np.linalg.norm(sample) < SUCCESS_DIST
 
 success_stat = np.sum(success_mat, axis=1)*(100/float(sample_num))
 
 font_size_1 = 11
-font_size_2 = 9
+font_size_2 = 13
 plt.rcParams.update({'font.size': font_size_1})
 plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
 
-plt.rcParams["figure.figsize"] = (6,2)
+plt.rcParams["figure.figsize"] = (3,6)
 fig = plt.figure()
 plt.axis('off')
-ax = fig.add_subplot(1, 2, 1)
+ax = fig.add_subplot(2, 1, 1)
 # ax.set_title('Reward')
 ax.set_ylabel(r'Reward')
 ax.set_xlabel(r'Iteration')
+ax.set_title(r'\textbf{(e)}', position=(-0.2,0.95), fontsize=font_size_2)
 inds = range(1, epoch_num + 1)[1::1]
 heights = rewards_undisc_mean[1::1]
 yerr = rewards_undisc_std[1::1]
@@ -213,15 +212,16 @@ yerr[0] = 0
 plt.errorbar(inds, heights, yerr=yerr, color='b')
 plt.ticklabel_format(axis="y", style="sci", scilimits=(0,00))
 # ax.legend()
-ax = fig.add_subplot(1, 2, 2)
+ax = fig.add_subplot(2, 1, 2)
 ax.set_ylabel(r'Success rate')
 ax.set_xlabel(r'Iteration')
+ax.set_title(r'\textbf{(f)}', position=(-0.2,0.95), fontsize=font_size_2)
 ax.yaxis.set_ticks(np.arange(0, 100, 40))
 width = 0.5
 # ax.plot(range(1,epoch_num+1)[::10], success_stat[::10])
 inds = range(1, epoch_num + 1)[1::1]
 success = success_stat[1::1]
 ax.bar(inds, success,width,color='b')
-plt.subplots_adjust(left=0.11, bottom=0.22, right=0.99, top=0.9, wspace=0.4, hspace=0.2)
-fig.savefig("yumi_real_progress.pdf")
-plt.show(block=True)
+plt.subplots_adjust(left=0.22, bottom=0.1, right=0.95, top=0.92, wspace=0, hspace=0.4)
+fig.savefig("yumi_real_progress_2.pdf")
+plt.show(block=False)
