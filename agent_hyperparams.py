@@ -36,9 +36,6 @@ SENSOR_DIMS = {
     ACTION: 7,
 }
 
-BASE_DIR = '/home/shahbaz/Research/Software/Stablevic27/log/'
-EXP_DIR = BASE_DIR + 'real_yumi'
-
 x0s = []
 ee_tgts = []
 reset_conditions = []
